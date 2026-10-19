@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polar-switch"
+version = "0.3.0"
+description = "Fast Muon orthogonalization with polynomial circuits"
+readme = "README.md"
+authors = [{name = "Zhehang Du"}]
+requires-python = ">=3.12"
+license = "MIT AND Apache-2.0"
+license-files = ["LICENSE", "THIRD_PARTY.md", "licenses/*.txt"]
+dependencies = ["torch==2.14.0"]
+
+[project.urls]
+Repository = "https://github.com/zhehangdu/polar-switch"
+
+[project.optional-dependencies]
+kernels = ["quack-kernels==0.6.5", "nvidia-cutlass-dsl==4.8.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["polar_switch"]

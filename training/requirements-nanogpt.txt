@@ -1,0 +1,6 @@
+# Install the CUDA 13 Torch stack first; FA4 builds from its pinned source.
+numpy==2.5.3
+triton==3.8.0
+huggingface-hub==1.28.0
+tiktoken==0.14.0
+flash-attn-4 @ git+https://github.com/Dao-AILab/flash-attention.git@1bda8f9290cd48d030f1516f0e680cd464ef3554#subdirectory=flash_attn/cute

@@ -1,0 +1,3 @@
+include polar_switch/README.md
+prune .local
+global-exclude *.py[cod]

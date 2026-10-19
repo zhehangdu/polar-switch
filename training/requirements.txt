@@ -1,0 +1,9 @@
+# Training dependencies for Qwen3 and Gemma 3; see training/README.md.
+transformers==5.17.0
+huggingface-hub==1.28.0
+numpy==2.5.3
+datasets==4.8.5
+apache-tvm-ffi==0.1.14.post1
+torch-c-dlpack-ext==0.1.5
+einops==0.8.2
+nvidia-cudnn-frontend==1.30.0

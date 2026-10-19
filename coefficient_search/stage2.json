@@ -1,0 +1,77 @@
+{
+  "format": "two-buffer-iteration-v2",
+  "status": "verified",
+  "depth": 4,
+  "input_interval": [
+    0.07877287797468263,
+    1.0
+  ],
+  "output_interval": [
+    0.8971109179810716,
+    1.1028890820189285
+  ],
+  "safety_factor": "201/200",
+  "centered": true,
+  "iteration": {
+    "initialize": "A = X.T @ X when X has more rows than columns; otherwise A = X @ X.T. Allocate B with the same shape as A.",
+    "steps": [
+      {
+        "step": 1,
+        "write": "B",
+        "square": "A",
+        "addend": "A",
+        "a": 5.598448400301858,
+        "b": -6.500656248351729,
+        "c": 1.486726696748922,
+        "operation": "B = a * (A @ A) + b * A + c * I"
+      },
+      {
+        "step": 2,
+        "write": "A",
+        "square": "B",
+        "addend": "A",
+        "a": 1.0,
+        "b": -0.9846462049719487,
+        "c": -1.9175807946478578,
+        "operation": "A = a * (B @ B) + b * A + c * I"
+      },
+      {
+        "step": 3,
+        "write": "B",
+        "square": "A",
+        "addend": "A",
+        "a": 1.0,
+        "b": 3.250287719572457,
+        "c": 1.9590882281781052,
+        "operation": "B = a * (A @ A) + b * A + c * I"
+      },
+      {
+        "step": 4,
+        "write": "A",
+        "square": "B",
+        "addend": "A",
+        "a": 1.0,
+        "b": 1.4407850630829102,
+        "c": 4.709485933634196,
+        "operation": "A = a * (B @ B) + b * A + c * I"
+      }
+    ],
+    "finish": "Y = X @ A when X has more rows than columns; otherwise Y = A @ X.",
+    "note": "@ is matrix multiplication; I is the identity matrix. Read all operands before overwriting a buffer. All scaling and optional centering are already included in these coefficients."
+  },
+  "verification": "The lower endpoint is verified for the exact circuit. The upper endpoint and buffer ranges are verified when every stored value is multiplied by a rounding factor in [1/safety, safety]; this does not model every GPU rounding operation.",
+  "verification_settings": {
+    "tolerance": 1e-10,
+    "max_boxes": 500000
+  },
+  "exact_intervals": {
+    "input": [
+      "1419046015574729/18014398509481984",
+      "1"
+    ],
+    "output": [
+      "8080456791859115/9007199254740992",
+      "4966970858811435/4503599627370496"
+    ]
+  }
+}

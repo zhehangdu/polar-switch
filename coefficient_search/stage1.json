@@ -1,0 +1,97 @@
+{
+  "format": "two-buffer-iteration-v2",
+  "status": "verified",
+  "depth": 6,
+  "input_interval": [
+    0.001,
+    1.0
+  ],
+  "output_interval": [
+    0.07877287797468263,
+    1.0
+  ],
+  "safety_factor": "201/200",
+  "centered": false,
+  "iteration": {
+    "initialize": "A = X.T @ X when X has more rows than columns; otherwise A = X @ X.T. Allocate B with the same shape as A.",
+    "steps": [
+      {
+        "step": 1,
+        "write": "B",
+        "square": "A",
+        "addend": "A",
+        "a": 11.497164906370488,
+        "b": -12.511452970205841,
+        "c": 0.004636590247760979,
+        "operation": "B = a * (A @ A) + b * A + c * I"
+      },
+      {
+        "step": 2,
+        "write": "A",
+        "square": "B",
+        "addend": "B",
+        "a": 1.0,
+        "b": 3.573449561023928,
+        "c": 0.00014824580356018573,
+        "operation": "A = a * (B @ B) + b * B + c * I"
+      },
+      {
+        "step": 3,
+        "write": "B",
+        "square": "A",
+        "addend": "A",
+        "a": 1.0,
+        "b": 3.7647709227854076,
+        "c": 0.0005602864000025255,
+        "operation": "B = a * (A @ A) + b * A + c * I"
+      },
+      {
+        "step": 4,
+        "write": "A",
+        "square": "B",
+        "addend": "B",
+        "a": 1.0,
+        "b": 4.40611187446682,
+        "c": 3.3624042457043446,
+        "operation": "A = a * (B @ B) + b * B + c * I"
+      },
+      {
+        "step": 5,
+        "write": "B",
+        "square": "A",
+        "addend": "B",
+        "a": 1.0,
+        "b": -1.2242503019562074,
+        "c": -4.464869613463266,
+        "operation": "B = a * (A @ A) + b * B + c * I"
+      },
+      {
+        "step": 6,
+        "write": "A",
+        "square": "B",
+        "addend": "A",
+        "a": 1.0,
+        "b": 0.28137157890834513,
+        "c": 1.0392921708972904,
+        "operation": "A = a * (B @ B) + b * A + c * I"
+      }
+    ],
+    "finish": "Y = X @ A when X has more rows than columns; otherwise Y = A @ X.",
+    "note": "@ is matrix multiplication; I is the identity matrix. Read all operands before overwriting a buffer. All scaling and optional centering are already included in these coefficients."
+  },
+  "verification": "The lower endpoint is verified for the exact circuit. The upper endpoint and buffer ranges are verified when every stored value is multiplied by a rounding factor in [1/safety, safety]; this does not model every GPU rounding operation.",
+  "verification_settings": {
+    "tolerance": 1e-10,
+    "max_boxes": 500000
+  },
+  "exact_intervals": {
+    "input": [
+      "1/1000",
+      "1"
+    ],
+    "output": [
+      "1419046015574729/18014398509481984",
+      "1"
+    ]
+  }
+}
